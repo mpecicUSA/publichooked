@@ -22,7 +22,9 @@ You will need to come up with a product idea, and write it as a proposal that in
 * A list of technologies that you plan to use
 * A well-defined and written-out feature list
 
-Fork this repository and submit a pull request with your proposal in the following format: <firstname>-<lastname>-q3-proposal.
+Fork this repository and submit a pull request with your proposal in the following format: firstname-lastname-q3-proposal.
+
+**NOTE: The proposal MUST be written in [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) and displayed in an organized manner!**
 
 ## Follow Agile Workflow
 
