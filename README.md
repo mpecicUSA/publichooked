@@ -3,11 +3,11 @@
 ## Project Details
 * A project description
     * Possible Ideas
-        * Fishermans tracking webapp User submits Lures used, fish caught, time spent on water, photos
+        * Fishermans tracking webapp User submits text -Lures used, dropdown fish caught, add timer feature -- time spent on water, upload photos
 * Who uses it?
     * Fishermen looking to use their data to improve their bites
 * What outputs do they need?
-    * 
+    * Review of data submitted, aggregation of that data 
 * What inputs are needed to generate those outputs?
     * User id
     * Location, Time, Date
@@ -21,10 +21,12 @@
     * A user on log in will be able to dashboard of overall stats with number of trips, catches, time spent on water
     * A user will be able to group trips by location or linearly 
     * A user can upload photos, comments, and stats from trip 
+    * Each trip will be a card containing photo(s) from trip, date, time, stats from trip 
 
-    
 
 ## Agile Workflow
+
+
 
 ## Base Goals
 * Must be full CRUD for at least one model (i.e. posts/comments/etc)
@@ -40,15 +42,13 @@
 * If any version of Angular/AngularJS is used, it must contain services.
     * NOT USED
 
-## Stretch Goals
-
 ## STRETCH GOALS
 
 * Use a state management library (Redux / Vuex / ngRx /etc.)
 * Use Authentication (Login/Logout)
     * WILL HAVE USER LOGIN 
 * Use some significant technology that was not covered in the program. This is not required, though. Examples include:
-    * Using Ember, Angular 4, AngularJS, Vue, etc. on the front-end instead of Angular 1.6
+* Using Ember, Angular 4, AngularJS, Vue, etc. on the front-end instead of Angular 1.6
 * Making a native mobile app using a wrapper like ionic framework/React Native/PhoneGap/Cordova etc.
 * Making a desktop app with [Electron](http://electron.atom.io/)/[React Native Desktop](https://github.com/ptmt/react-native-desktop) etc.
 * Integrating a physical device/sensor/internet of things
