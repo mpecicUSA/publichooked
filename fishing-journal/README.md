@@ -3,7 +3,7 @@
 ## Project Details
 * A project description
     * Possible Ideas
-        * Fishermans tracking webapp User submits text -Lures used, dropdown fish caught, add timer feature -- time spent on water, upload photos
+        * Fishermans tracking webapp User submits text -Lures used, dropdown fish caught, time spent on water, upload photos
 * Who uses it?
     * Fishermen looking to use their data to improve their bites
 * What outputs do they need?
@@ -16,11 +16,11 @@
     * Photo of fishing location, catch, equipment 
 
 * A list of technologies that you plan to use
-    * React, React Router, Bootstrap, ReactStrap 
+    * React, React Router, Bootstrap, ReactStrap, postgresSQL, 
 * A well-defined and written-out feature list
+    * A user can upload photos, comments, and stats from trip 
     * A user on log in will be able to dashboard of overall stats with number of trips, catches, time spent on water
     * A user will be able to group trips by location or linearly 
-    * A user can upload photos, comments, and stats from trip 
     * Each trip will be a card containing photo(s) from trip, date, time, stats from trip 
 
 
@@ -34,13 +34,10 @@
 * Must contain server routes handling full CRUD.
     ## 
 * Must use a front end framework (AngularJS, Angular5, React, Vue, etc.)
-    * REACT
+    * React
 * Must use client side routing(ui-router, react-router v4, etc.)
-    * REACT ROUTER
-* Must contain parent/child components and pass data/functions down from parent component to child component somewhere
-    * ...
-* If any version of Angular/AngularJS is used, it must contain services.
-    * NOT USED
+    * React-router
+
 
 ## STRETCH GOALS
 
