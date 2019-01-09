@@ -7,6 +7,7 @@ import {
     Nav,
     NavItem,
     NavLink } from 'reactstrap';
+import { Link } from "react-router-dom"
 
 class CompanyNavbar extends React.Component {
     constructor(props) {
@@ -25,15 +26,19 @@ class CompanyNavbar extends React.Component {
     render() {
         return (
             <Navbar color="light" light expand="md">
-                <NavbarBrand href="/">Hooked</NavbarBrand>
+                <NavbarBrand>Hooked</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav className="ml-auto" navbar>
                 <NavItem>
-                    <NavLink href="/components/">Add</NavLink>
+                    <NavLink>
+                        <Link to="/add">Add</Link>
+                    </NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink href="/components/">View</NavLink>
+                    <NavLink>
+                        <Link to="/view">View</Link>
+                    </NavLink>
                 </NavItem>
                 </Nav>
                 </Collapse>
