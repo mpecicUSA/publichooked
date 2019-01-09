@@ -12,10 +12,6 @@ class Overview extends React.Component {
             
                         <p>{ userName }</p>
                     </div>
-                    <div className="rightAlign">
-                        <p>Last 6 months Trips</p>
-                        <p>bar Graph with last 6 month </p>
-                    </div>
                 </>
             )
         }
