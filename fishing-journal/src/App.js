@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import Header from "./components/header"
 import CompanyNavbar from "./components/CompanyNavbar"
 import Overview from "./components/overview"
 import UserHeader from "./components/userHeader"
 import Stats from "./components/stats"
 import AddTrip from "./components/addTrip"
+import NoMatch from "./components/NoMatch"
 import { BrowserRouter as Router, Route, Link, Switch }from "react-router-dom"
 import {Col, Row, Container} from "reactstrap"
 
@@ -28,44 +28,42 @@ class App extends Component {
     this.setState(prevState => {
       return ({
         ...prevState, 
-        trips: [{
-          ...prevState.trips,
-          lowerState
-        }]
+        trips: [
+          lowerState,
+          ...prevState.trips
+        ]
       })
     })
   }
-  render() {
-    return (
-      <div className="App">
-          {/* Hooked Navbar - always display  */}
-          <CompanyNavbar />
-        <Switch> 
-           {/* Add a trip Component  */}
-    <Route exact path="/add" render={()=> <AddTrip updateState={this.updateState} />} />
-          {/* View trips page, needs props for each  */}  
-          <Route exact path="/view" render={() => (
-            <Container>
-              <Row>
-                <Col>
-                  <Row>
-                    <Header userData={this.state.user} /> 
+    render() {
+      return (
+        <div className="App">
+            {/* Hooked Navbar - always display  */}
+            <CompanyNavbar />
+          <Switch> 
+            {/* Add a trip Component  */}
+      <Route exact path="/add" render={()=> <AddTrip trips={this.state.trips} updateState={this.updateState} />} />
+            {/* View trips page, needs props for each  */}  
+            <Route path="/view" render={() => (
+              <Container>
+                 <Row>
+                  <Col>
                     <Overview userData={this.state.user} />
-                  </Row>
-                  <Row>
-                    <UserHeader photos={this.state.photos} theTrips={this.state.trips} />
-                  </Row>
-                </Col>
-              <Row>
-                <Col>
-                  <Stats theTrips={this.state.trips} />
-                </Col>
-              </Row>
-              </Row>
-            </Container>
-          )}/>
-        </Switch>
-      </div>
+                    <Stats theTrips={this.state.trips} />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <Row>
+                      <UserHeader photos={this.state.photos} theTrips={this.state.trips} />
+                    </Row>
+                  </Col>
+                </Row>
+              </Container>
+            )}/>
+            <Route component={NoMatch} />
+          </Switch>
+        </div>
     );
   }
 }

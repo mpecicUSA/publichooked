@@ -9,7 +9,8 @@ class AddTrip extends React.Component {
         tripDate: Date,
         catches: Number, 
         userComments: "",
-        starred: false
+        starred: false,
+        id: Number
     }
     addTrip = (e) => {
         e.preventDefault();
@@ -20,13 +21,14 @@ class AddTrip extends React.Component {
             userComments: this.state.userComments,
             starred: this.state.starred
         }).then(() => {
-            this.props.history.push('/view')
             this.props.updateState(this.state)
+            this.props.history.push('/view')
         })
     }
     updateState = (e) => {
         this.setState({
-                [e.target.name]: e.target.value
+                [e.target.name]: e.target.value,
+                id: this.props.trips.length+1
             })
     }
     updateBoolState = (e) => {
@@ -37,10 +39,10 @@ class AddTrip extends React.Component {
             })
         })
     }
-
-
-
+    
+    
     render(){
+        if(this.props.trips){
         return (
             <>
                 <Container>
@@ -64,6 +66,11 @@ class AddTrip extends React.Component {
                 </Container>
             </>
         )
+    }else{
+        return (
+            <h1> Broken </h1>
+        )
     }
+}
 }
 export default withRouter(AddTrip)

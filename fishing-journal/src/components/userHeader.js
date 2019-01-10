@@ -2,19 +2,32 @@ import React from "react"
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col,  Carousel,
   CarouselItem,
   CarouselControl,
-  CarouselIndicators } from 'reactstrap';
+  CarouselIndicators,
+  Modal, 
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Form, 
+  FormGroup, 
+  Input} from 'reactstrap';
 import classnames from 'classnames';
-import AddTrip from "./addTrip"
 
 class UserHeader extends React.Component {
   state = {
-      addTrip: false
+      
   }
     constructor(props) {
         super(props);
         this.state = {
           activeTab: 'Recent_Activity',
-          activeIndex: 0
+          activeIndex: 0,
+          modal: false,
+          id: Number,
+          tripName: "",
+          tripDate: Date, 
+          starred: false, 
+          pictureUrl: "",
+          catches: Number
         };
         this.next = this.next.bind(this);
         this.previous = this.previous.bind(this);
@@ -22,6 +35,7 @@ class UserHeader extends React.Component {
         this.onExiting = this.onExiting.bind(this);
         this.onExited = this.onExited.bind(this);
         this.toggle = this.toggle.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
     }
     onExiting() {
       this.animating = true;
@@ -54,14 +68,16 @@ class UserHeader extends React.Component {
             });
         }
     }
-    editTrip = (e) =>{
-      this.setState((prevState)=> {
-        return{
-          ...prevState, 
-          addTrip: true
-          }
-      })
+    toggleModal(e) {
+      this.setState({
+        modal: !this.state.modal,
+        trip_id_clicked: e.target.value
+      });
     }
+    updateState = (e) => {
+      console.log(e.target.value)
+    }
+  
     
 render(){
     if(this.props.theTrips && this.props.photos){
@@ -82,32 +98,50 @@ render(){
       let tripCards = theTrips.map(trip => 
         <div key={trip.id} detail={trip}>
           <Row>
-            <Col sm="6">
+            <Col sm="12">
               <Card body>
               <Carousel
                 activeIndex={activeIndex}
                 next={this.next}
                 previous={this.previous}
                 >
-                <CarouselIndicators items={this.props.photos.filter(photo => photo.trip_id === trip.id)} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
-        {slides.filter(slide => slide.props.trip_id === trip.id)}
-        <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
-        <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
-      </Carousel>
+                  <CarouselIndicators items={this.props.photos.filter(photo => photo.trip_id === trip.id)} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
+                  {slides.filter(slide => slide.props.trip_id === trip.id)}
+                  <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
+                  <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
+                </Carousel>
                 <CardTitle>{trip.tripName} </CardTitle>
                 <CardTitle>{trip.tripDate}</CardTitle>
                 {trip.starred ? <p>Starred</p> : <p>Not Starred</p>}
                 <CardText>Fish Caught:{trip.catches}</CardText>
                 <CardText>{trip.userComments}</CardText>
-                <Button value={trip.id} onClick={this.editTrip}>Edit this trip</Button>
+                <Button value={trip.id} onClick={this.toggleModal}>Edit this trip</Button>
               </Card>
             </Col>
         </Row>
+        <Modal isOpen={this.state.modal} toggle={this.toggleModal} className={this.props.className}>
+        <ModalHeader toggle={this.toggleModal}>Edit {theTrips.filter(trip => trip.id == this.state.trip_id_clicked).map(trip => trip.tripName)[0]} </ModalHeader>
+        <ModalBody>
+          <Form>
+            <FormGroup>
+              <Input type="string" onChange={this.updateState} name="tripName" value={theTrips.filter(trip => trip.id == this.state.trip_id_clicked).map(trip => trip.tripName)[0]} id="tripName"  />
+              <Input type="date" onChange={this.updateState} name="tripDate" value={theTrips.filter(trip => trip.id == this.state.trip_id_clicked).map(trip => trip.tripDate)[0]} id="tripDate"  />
+              <Input type="integer" onChange={this.updateState} name="catches" value={theTrips.filter(trip => trip.id == this.state.trip_id_clicked).map(trip => trip.catches)[0]} id="catches"  />
+              <Input type="textarea"  onChange={this.updateState} name="userComments" value={theTrips.filter(trip => trip.id == this.state.trip_id_clicked).map(trip => trip.userComments)[0]} id="userComments" />
+              <Input type="string" name="pictureUrl" id="pictureUrl" placeholder="add a photo url here"/>
+              <Input type="checkbox" onChange={this.updateBoolState} name="starred" value={theTrips.filter(trip => trip.id == this.state.trip_id_clicked).map(trip => trip.starred)[0]} id="starred" />{'Favorite?'}
+            </FormGroup>
+          </Form>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={this.toggleModal}>Save Changes</Button>{''}
+          <Button color="secondary" onClick={this.toggleModal}>Cancel</Button>
+        </ModalFooter>
+      </Modal>
         </div>
         )
       return (
         <>
-          {this.state.addTrip ? <AddTrip /> : null}
     <div>
         <Nav tabs>
           <NavItem>
