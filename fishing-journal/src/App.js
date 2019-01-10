@@ -34,10 +34,10 @@ class App extends Component {
 
   }
   updateState = (tripDetails) => {
+    console.log(tripDetails)
     this.setState((prevState) => {
       return ({
-        ...prevState, 
-        tripDetails: [...prevState, tripDetails]
+        trips: {...prevState, tripDetails}
       })
     })
   }

@@ -5,46 +5,43 @@ import {withRouter} from 'react-router-dom'
 // const history = createHistory()
 class AddTrip extends React.Component {
     state = {
-        tripDetails: {
         tripName: "",
-        tripDate: Date,
-        catches: Number, 
+        tripDate: "",
+        catches: "", 
         userComments: "",
         starred: false,
         pictureUrl: "",
         id: Number
-        }
     }
     addTrip = (e) => {
     e.preventDefault();
     axios.post('http://localhost:8000/add', {
-        tripName: this.state.tripDetails.tripName,
-        tripDate: this.state.tripDetails.tripDate,
-        catches: this.state.tripDetails.catches, 
-        userComments: this.state.tripDetails.userComments,
-        starred: this.state.tripDetails.starred
+        tripName: this.state.tripName,
+        tripDate: this.state.tripDate,
+        catches: this.state.catches, 
+        userComments: this.state.userComments,
+        starred: this.state.starred,
+        pictureUrl: this.state.pictureUrl
     }).then(() => {
         console.log("Promise?")
-        this.props.updateState(this.state.tripDetails)
-        this.props.history.push('/view')
+        this.props.updateState(this.state)
+        this.props.history.push('/view')    
     })
 }
     updateState = (e) => {
         this.setState({
-            tripDetails:{
                 [e.target.name]: e.target.value,
                 id: this.props.trips.length+1
-            }
         })
     }
-    updateBoolState = (e) => {
-        this.setState(prevState => {
-            return ({
-                ...prevState,
-                starred: !prevState.starred
-            })
-        })
-    }
+    // updateBoolState = (e) => {
+    //     this.setState(prevState => {
+    //         return ({
+    //             ...prevState,
+    //             starred: !prevState.starred
+    //         })
+    //     })
+    // }
     
     
     render(){
@@ -57,12 +54,12 @@ class AddTrip extends React.Component {
                             <h3>Add a trip!</h3>
                             <Form onSubmit={this.addTrip}>
                                 <FormGroup>
-                                    <Input type="string" onChange={this.updateState} name="tripName" value={this.state.tripDetails.tripName} id="tripName" placeholder="Trip Name" />
-                                    <Input type="date" onChange={this.updateState} name="tripDate" value={this.state.tripDetails.date} id="tripDate" placeholder="Date" />
-                                    <Input type="integer" onChange={this.updateState} name="catches" value={this.state.tripDetails.catches} id="catches" placeholder="Number of fish caught" />
-                                    <Input type="textarea"  onChange={this.updateState} name="userComments" value={this.state.tripDetails.comments} id="userComments" placeholder="Comments"/>
-                                    <Input type="textarea"  onChange={this.updateState} name="pictureUrl" value={this.state.tripDetails.pictureUrl} id="pictureUrl" placeholder="Picture Url"/>
-                                    <Input type="checkbox" onChange={this.updateBoolState} name="starred" value={this.state.tripDetails.starred} id="starred" placeholder="Would you like to favorite this trip?"/>
+                                    <Input type="string" onChange={this.updateState} name="tripName" value={this.state.tripName} id="tripName" placeholder="Trip Name" />
+                                    <Input type="date" onChange={this.updateState} name="tripDate" value={this.state.tripDate} id="tripDate" placeholder="Date" />
+                                    <Input type="integer" onChange={this.updateState} name="catches" value={this.state.catches} id="catches" placeholder="Number of fish caught" />
+                                    <Input type="textarea"  onChange={this.updateState} name="userComments" value={this.state.userComments} id="userComments" placeholder="Comments"/>
+                                    <Input type="textarea"  onChange={this.updateState} name="pictureUrl" value={this.state.pictureUrl} id="pictureUrl" placeholder="Picture Url"/>
+                                    <Input type="checkbox" onChange={this.updateBoolState} name="starred" value={this.state.starred} id="starred" placeholder="Would you like to favorite this trip?"/>
                                     {'Would you like to favorite this trip?'}
                                 </FormGroup>
                                 <FormGroup>
