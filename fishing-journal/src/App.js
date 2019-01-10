@@ -13,25 +13,31 @@ class App extends Component {
   state = {
   
   }
-  //set state to API 
+
   async componentDidMount(){
+    //pull all trips
+
     const response = await fetch('http://localhost:8000/trips/1')
     const json = await response.json()
+    //pull all data for user1
+
     const response2 = await fetch('http://localhost:8000/users/1')
     const json2 = await response2.json()
-    const response3 = await fetch('http://localhost:8000/photos')
-    const json3 = await response3.json()
-    this.setState({ trips: json, user: json2, photos: json3})
+    //seperate table for multiple photos
+    
+    // const response3 = await fetch('http://localhost:8000/photos')
+    // const json3 = await response3.json()
+    //set state to API 
+
+    this.setState({ trips: json, user: json2})
+    // this.setState({ trips: json, user: json2, photos: json3})
+
   }
-  updateState = (lowerState) => {
-    console.log(lowerState)
-    this.setState(prevState => {
+  updateState = (tripDetails) => {
+    this.setState((prevState) => {
       return ({
         ...prevState, 
-        trips: [
-          lowerState,
-          ...prevState.trips
-        ]
+        tripDetails: [...prevState, tripDetails]
       })
     })
   }
@@ -55,7 +61,7 @@ class App extends Component {
                 <Row>
                   <Col>
                     <Row>
-                      <UserHeader photos={this.state.photos} theTrips={this.state.trips} />
+                      <UserHeader theTrips={this.state.trips} />
                     </Row>
                   </Col>
                 </Row>

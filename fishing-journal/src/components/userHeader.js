@@ -80,9 +80,9 @@ class UserHeader extends React.Component {
   
     
 render(){
-    if(this.props.theTrips && this.props.photos){
+    if(this.props.theTrips){
       const { activeIndex } = this.state;
-      const slides = this.props.photos.map((item) => {
+      const slides = this.props.trips.map((item) => {
         return (
           <CarouselItem
             onExiting={this.onExiting}
@@ -90,7 +90,7 @@ render(){
             key={item.id}
             trip_id={item.trip_id}
           >
-            <img src={item.pictureUrl} alt={item.altText} height={"500px"} width={"700px"}/>
+            <img src={item.pictureUrl} alt={item.altText} />
           </CarouselItem>
         );
       })
@@ -112,8 +112,8 @@ render(){
                 </Carousel>
                 <CardTitle>{trip.tripName} </CardTitle>
                 <CardTitle>{trip.tripDate}</CardTitle>
-                {trip.starred ? <p>Starred</p> : <p>Not Starred</p>}
-                <CardText>Fish Caught:{trip.catches}</CardText>
+                {trip.starred ? <p>Favorited</p> : null}
+                <CardText>Fish Caught: {trip.catches}</CardText>
                 <CardText>{trip.userComments}</CardText>
                 <Button value={trip.id} onClick={this.toggleModal}>Edit this trip</Button>
               </Card>
@@ -202,7 +202,6 @@ render(){
           <TabPane tabId="My_Photos">
             {tripCards.map(trips => 
             <div>
-              {/* {console.log(tripCards.filter(trips => trips.props.detail.catches > 0).map(item => item.props.detail.id))} */}
               <img src={`${trips.props.detail.pictureUrl}`} alt={trips.id}></img>
             </div> 
             )}
