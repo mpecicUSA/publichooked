@@ -2,12 +2,19 @@ import React from "react"
 
 class Stats extends React.Component {
     render (){
-        return (
+        if(this.props.theTrips){
+            return (
             <>
-                <p>Stats go here</p>
+             <p>Fish Caught: {this.props.theTrips.map(trip=> +trip.catches).reduce((a,b)=> a+b)} </p>
+             <p>Total trips: {this.props.theTrips.length} </p> 
             </>
-        )
+        ) 
+    }else{
+    return (
+        null
+    )
     }
+}
 }
 
 export default Stats

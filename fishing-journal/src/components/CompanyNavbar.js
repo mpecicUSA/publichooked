@@ -40,11 +40,11 @@ class CompanyNavbar extends React.Component {
                         <Link to="/add">Add</Link>
                     </NavLink>
                 </NavItem>
-                <NavItem>
+                {/* <NavItem>
                     <NavLink>
                         <Link to="/logout">Logout</Link>
                     </NavLink>
-                </NavItem>
+                </NavItem> */}
                 </Nav>
                 </Collapse>
             </Navbar>

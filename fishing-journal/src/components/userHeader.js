@@ -17,7 +17,7 @@ class UserHeader extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          activeTab: 'Recent_Activity',
+          activeTab: 'My_Trips',
           modal: false,
           id: Number,
           tripName: "",
@@ -74,14 +74,6 @@ render(){
         <Nav tabs> 
           <NavItem>
             <NavLink
-              className={classnames({ active: this.state.activeTab === 'Recent_Activity' })}
-              onClick={() => { this.toggle('Recent_Activity'); }}
-            >
-              This Month's Trips
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
               className={classnames({ active: this.state.activeTab === 'My_Trips' })}
               onClick={() => { this.toggle('My_Trips'); }}
             >
@@ -114,13 +106,6 @@ render(){
           </NavItem>
         </Nav>
         <TabContent activeTab={this.state.activeTab}>
-        <TabPane tabId="Recent_Activity">
-            {tripCards.map(trips => 
-              <div>
-                {trips.props.detail.tripDate}
-              </div>
-            )}
-          </TabPane>
           <TabPane tabId="My_Trips">
             {tripCards}
           </TabPane>
@@ -128,11 +113,15 @@ render(){
             {tripCards.filter(trips => trips.props.detail.catches > 0)}
           </TabPane>
           <TabPane tabId="My_Photos">
+              <Col>
             {tripCards.map(trips => 
-            <div>
-              <img src={`${trips.props.detail.pictureUrl}`} alt={trips.id}></img>
-            </div> 
-            )}
+                <Row >
+                  <Card sm="6">
+                    <CardImg src={`${trips.props.detail.pictureUrl}`} alt={trips.id}/>
+                  </Card>
+                  </Row>
+                    )}
+                </Col>
           </TabPane>
           <TabPane tabId="Favorites">
             {tripCards.filter(trips => trips.props.detail.starred === true)}

@@ -18,7 +18,8 @@ export default class EditTrip extends React.Component {
         catches:this.props.theTrips.filter(trip => trip.id == this.props.tripId).map(trip => trip.catches)[0],
         userComments: this.props.theTrips.filter(trip => trip.id == this.props.tripId).map(trip => trip.userComments)[0],
         pictureUrl: this.props.theTrips.filter(trip => trip.id == this.props.tripId).map(trip => trip.pictureUrl)[0],
-        starred: this.props.theTrips.filter(trip => trip.id == this.props.tripId).map(trip => trip.starred)[0]
+        starred: this.props.theTrips.filter(trip => trip.id == this.props.tripId).map(trip => trip.starred)[0],
+        id: this.props.tripId
     }
     updateState = (e) => {
         this.setState({
@@ -36,8 +37,11 @@ export default class EditTrip extends React.Component {
             pictureUrl: this.state.pictureUrl
         }).then(() => {
             this.props.updateState(this.state, this.props.tripId)
-            this.setState({
-                modal: false
+            this.setState((prevState)=>{
+                return (
+                    {...prevState,
+                    modal: false}
+                )
             })
         })
     }
@@ -56,7 +60,7 @@ export default class EditTrip extends React.Component {
     render(){
         return (
             <>
-            <Modal isOpen={this.state.modal} toggle={this.toggleModal} className={this.props.className}>
+            <Modal isOpen={this.state.modal} toggle={this.props.toggleModal} className={this.props.className}>
                 <ModalHeader toggle={this.toggleModal}>Edit {this.state.tripName} </ModalHeader>
                 <ModalBody>
                 <Form onSubmit={this.updateAPI}>
@@ -65,7 +69,7 @@ export default class EditTrip extends React.Component {
                     <Input type="date" onChange={this.updateState} name="tripDate" value={this.state.tripDate} id="tripDate"  />
                     <Input type="number" onChange={this.updateState} name="catches" value={this.state.catches} id="catches"  />
                     <Input type="textarea"  onChange={this.updateState} name="userComments" value={this.state.userComments} id="userComments" />
-                    <Input type="string" name="pictureUrl" id="pictureUrl" value={this.state.pictureUrl}/>
+                    <Input type="string" name="pictureUrl" id="pictureUrl" onChange={this.updateState} value={this.state.pictureUrl}/>
                     <Input type="checkbox" onChange={this.updateState} name="starred" value={this.state.starred} id="starred" />{'Favorite?'}
                     </FormGroup>
                 </Form>

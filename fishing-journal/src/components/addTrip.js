@@ -19,7 +19,7 @@ class AddTrip extends React.Component {
     axios.post('http://localhost:8000/add', {
         tripName: this.state.tripName,
         tripDate: this.state.tripDate,
-        catches: this.state.catches, 
+        catches: +this.state.catches, 
         userComments: this.state.userComments,
         starred: this.state.starred,
         pictureUrl: this.state.pictureUrl
