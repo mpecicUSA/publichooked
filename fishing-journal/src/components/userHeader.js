@@ -42,9 +42,6 @@ class UserHeader extends React.Component {
           });
       }
 }
-    updateState = (e) => {
-      console.log(e.target.value)
-    }
   
     
 render(){
@@ -73,7 +70,7 @@ render(){
       return (
         <>
     <div>
-      {this.state.modal ? <EditTrip theTrips={theTrips} tripId={this.state.trip_id_clicked} />: null }
+      {this.state.modal ? <EditTrip theTrips={theTrips} tripId={this.state.trip_id_clicked} toggleModal={this.toggleModal} updateState={this.props.updateState} />: null }
         <Nav tabs> 
           <NavItem>
             <NavLink

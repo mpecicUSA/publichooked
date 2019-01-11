@@ -37,10 +37,24 @@ class App extends Component {
     console.log(tripDetails)
     this.setState((prevState) => {
       return ({
-        trips: {...prevState, tripDetails}
+        trips: [...prevState.trips, tripDetails]
       })
     })
   }
+  editState = (tripDetails, tripId) => {
+    console.log("An trip with an id of", tripId, "was update")
+      this.setState(prevState => ({
+        trips: prevState.trips.reduce((acc, cv) => {
+          if(cv.id === Number(tripId) ){
+            return [
+              ...acc, 
+            tripDetails
+            ]
+          }
+          return [...acc, cv]
+        },[])
+  }))
+}
     render() {
       return (
         <div className="App">
@@ -61,7 +75,7 @@ class App extends Component {
                 <Row>
                   <Col>
                     <Row>
-                      <UserHeader theTrips={this.state.trips} />
+                      <UserHeader updateState={this.editState} theTrips={this.state.trips} />
                     </Row>
                   </Col>
                 </Row>
