@@ -41,6 +41,17 @@ export default class EditTrip extends React.Component {
             })
         })
     }
+    deleteAPI = (e) => {
+        e.preventDefault();
+        axios.patch(`http://localhost:8000/delete/${this.props.tripId}`).then(() => {
+            console.log("after delete API Axios Call")
+            this.props.deleteState(this.props.tripId)
+            console.log("after this.props.delete")
+            this.setState({
+                modal: false
+            })
+        })
+    }
     
     render(){
         return (
@@ -62,6 +73,7 @@ export default class EditTrip extends React.Component {
                 <ModalFooter>
                 <Button color="primary" onClick={this.updateAPI}>Save Changes</Button>{''}
                 <Button color="secondary" onClick={this.props.toggleModal}>Cancel</Button>
+                <Button color="danger" onClick={this.deleteAPI}>Delete</Button>
                 </ModalFooter>
             </Modal>
             </>

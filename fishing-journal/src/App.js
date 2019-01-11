@@ -41,6 +41,17 @@ class App extends Component {
       })
     })
   }
+  deleteState = (tripId) => {
+    console.log("An trip with an id of", tripId, "was deleted")
+      this.setState(prevState => ({
+        trips: prevState.trips.reduce((acc, cv) => {
+          if(cv.id === Number(tripId) ){
+            return [...acc]
+          }
+          return [...acc, cv]
+        },[])
+  }))
+}
   editState = (tripDetails, tripId) => {
     console.log("An trip with an id of", tripId, "was update")
       this.setState(prevState => ({
@@ -75,7 +86,7 @@ class App extends Component {
                 <Row>
                   <Col>
                     <Row>
-                      <UserHeader updateState={this.editState} theTrips={this.state.trips} />
+                      <UserHeader deleteState={this.deleteState} updateState={this.editState} theTrips={this.state.trips} />
                     </Row>
                   </Col>
                 </Row>

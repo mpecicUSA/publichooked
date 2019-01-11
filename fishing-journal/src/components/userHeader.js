@@ -70,7 +70,7 @@ render(){
       return (
         <>
     <div>
-      {this.state.modal ? <EditTrip theTrips={theTrips} tripId={this.state.trip_id_clicked} toggleModal={this.toggleModal} updateState={this.props.updateState} />: null }
+      {this.state.modal ? <EditTrip deleteState={this.props.deleteState} theTrips={theTrips} tripId={this.state.trip_id_clicked} toggleModal={this.toggleModal} updateState={this.props.updateState} />: null }
         <Nav tabs> 
           <NavItem>
             <NavLink
