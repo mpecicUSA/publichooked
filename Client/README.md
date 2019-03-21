@@ -1,58 +1,17 @@
 # Marko Pecic's Q3 Project 
-
-## Project Details
-* A project description
-    * Possible Ideas
-        * Fishermans tracking webapp User submits text -Lures used, dropdown fish caught, time spent on water, upload photos
-* Who uses it?
-    * Fishermen looking to use their data to improve their bites
-* What outputs do they need?
-    * Review of data submitted, aggregation of that data 
-* What inputs are needed to generate those outputs?
-    * User id
-    * Location, Time, Date
-    * Rod, Reel, Line
-    * Lure used 
-    * Photo of fishing location, catch, equipment 
-
-* A list of technologies that you plan to use
-    * React, React Router, Bootstrap, ReactStrap, postgresSQL, 
-* A well-defined and written-out feature list
-    * A user can upload photos, comments, and stats from trip 
-    * A user on log in will be able to dashboard of overall stats with number of trips, catches, time spent on water
-    * A user will be able to group trips by location or linearly 
-    * Each trip will be a card containing photo(s) from trip, date, time, stats from trip 
-
-
-## Agile Workflow
+## Project details 
+   * Project requires a backend api availible https://github.com/mpecicUSA/Fishing-API-for-hooked-app-
+## Instructions 
+   * Install API (link above) npm install and start 
+   * npm start fishing journal app 
+### What is it
+   * A react, node.js, postgreSQL web application that allows visitors to log, view, edit and detelete their fishing trips.
+### Why
+   * Data makes us better. By keeping track of fishing conditions, locations, baits, rods, reels, line and more users can see what results in catches and what doesnt. 
 
 
 
-## Base Goals
-* Must be full CRUD for at least one model (i.e. posts/comments/etc)
-    * Login, Create, READ, EDIT, DELETE trips 
-* Must contain server routes handling full CRUD.
-    ## 
-* Must use a front end framework (AngularJS, Angular5, React, Vue, etc.)
-    * React
-* Must use client side routing(ui-router, react-router v4, etc.)
-    * React-router
+### Future Implementations GOALS
+   * Use a state management library (Redux / Vuex / ngRx /etc.)
+   * Use Authentication (Login/Logout)
 
-
-## STRETCH GOALS
-
-* Use a state management library (Redux / Vuex / ngRx /etc.)
-* Use Authentication (Login/Logout)
-    * WILL HAVE USER LOGIN 
-* Use some significant technology that was not covered in the program. This is not required, though. Examples include:
-* Using Ember, Angular 4, AngularJS, Vue, etc. on the front-end instead of Angular 1.6
-* Making a native mobile app using a wrapper like ionic framework/React Native/PhoneGap/Cordova etc.
-* Making a desktop app with [Electron](http://electron.atom.io/)/[React Native Desktop](https://github.com/ptmt/react-native-desktop) etc.
-* Integrating a physical device/sensor/internet of things
-* Using Rails, .NET, SailsJS, or some other backend framework for building APIs
-
-## Add all three of these to an online portfolio
-
-* Create a portfolio on the [student portal](http://students.galvanize.com)
-* Link to your final deployed site, your video, your repositories, and your write-up
-* This will be added to your web development portfolio
