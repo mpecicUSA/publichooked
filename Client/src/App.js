@@ -6,6 +6,9 @@ import UserHeader from "./components/userHeader"
 import Stats from "./components/stats"
 import AddTrip from "./components/addTrip"
 import NoMatch from "./components/NoMatch"
+import Login from './components/Login'
+import Register from "./components/Register"
+import Landing from './components/Landing'
 import { BrowserRouter as Router, Route, Link, Switch }from "react-router-dom"
 import {Col, Row, Container} from "reactstrap"
 
@@ -69,15 +72,17 @@ class App extends Component {
     render() {
       return (
         <div className="App">
+
             {/* Hooked Navbar - always display  */}
-            <CompanyNavbar />
-          <Switch> 
+            <CompanyNavbar userData={this.state.user} />
+            <Switch> 
             {/* Add a trip Component  */}
-      <Route exact path="/add" render={()=> <AddTrip trips={this.state.trips} updateState={this.updateState} />} />
+            <Route path="/landing" render={() => <Landing />} />
+            <Route path="/add" render={()=> <AddTrip trips={this.state.trips} updateState={this.updateState} />} />
             {/* View trips page, needs props for each  */}  
             <Route path="/view" render={() => (
               <Container>
-                 <Row>
+                <Row>
                   <Col>
                     <Overview userData={this.state.user} />
                     <Stats theTrips={this.state.trips} />
@@ -92,8 +97,29 @@ class App extends Component {
                 </Row>
               </Container>
             )}/>
+            {/* Route to Login */}
+            <Route path="/login" render={() => (
+              <Container> 
+                <Row>
+                  <Col>
+                    <Login />
+                  </Col>
+                </Row>
+              </Container>
+            )} />
+            {/* Route to Registration */}
+            <Route path="/register" render={() => (
+              <Container> 
+                <Row>
+                  <Col>
+                    <Register />
+                  </Col>
+                </Row>
+              </Container>
+            )} />
             <Route component={NoMatch} />
           </Switch>
+
         </div>
     );
   }

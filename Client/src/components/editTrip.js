@@ -19,7 +19,7 @@ export default class EditTrip extends React.Component {
         userComments: this.props.theTrips.filter(trip => trip.id == this.props.tripId).map(trip => trip.userComments)[0],
         pictureUrl: this.props.theTrips.filter(trip => trip.id == this.props.tripId).map(trip => trip.pictureUrl)[0],
         starred: this.props.theTrips.filter(trip => trip.id == this.props.tripId).map(trip => trip.starred)[0],
-        id: this.props.tripId
+        id: Number(this.props.tripId)
     }
     updateState = (e) => {
         this.setState({

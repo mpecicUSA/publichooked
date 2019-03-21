@@ -12,7 +12,6 @@ import { Link } from "react-router-dom"
 class CompanyNavbar extends React.Component {
     constructor(props) {
         super(props);
-    
         this.toggle = this.toggle.bind(this);
         this.state = {
             isOpen: false
@@ -25,30 +24,31 @@ class CompanyNavbar extends React.Component {
     }
     render() {
         return (
+            <>
             <Navbar color="dark" expand="md">
-                <NavbarBrand>Hooked</NavbarBrand>
+                <NavbarBrand style={{color: "white"}}>Hooked</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav className="ml-auto" navbar>
                 <NavItem>
                     <NavLink>
-                        <Link to="/view">View</Link>
+                        <Link style={{color: "white"}} to="/view">View</Link>
                     </NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink>
-                        <Link to="/add">Add</Link>
+                        <Link style={{color: "white"}} to="/add">Add</Link>
                     </NavLink>
                 </NavItem>
-                {/* <NavItem>
+                <NavItem>
                     <NavLink>
-                        <Link to="/logout">Logout</Link>
+                        { this.props.userData ? <Link style={{color: "white"}} to="/logout">Logout</Link> :   <Link style={{color: "white"}} to="/login">Login</Link> }
                     </NavLink>
-                </NavItem> */}
+                </NavItem>
                 </Nav>
                 </Collapse>
             </Navbar>
-
+            </>
         );
     }
     }
