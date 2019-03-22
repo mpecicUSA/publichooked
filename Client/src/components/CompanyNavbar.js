@@ -22,6 +22,10 @@ class CompanyNavbar extends React.Component {
             isOpen: !this.state.isOpen
         });
     }
+    logout = (e) => {
+        e.preventDefault();
+        this.props.logout()
+    }
     render() {
         return (
             <>
@@ -42,7 +46,7 @@ class CompanyNavbar extends React.Component {
                 </NavItem>
                 <NavItem>
                     <NavLink>
-                        { this.props.userData ? <Link style={{color: "white"}} to="/logout">Logout</Link> :   <Link style={{color: "white"}} to="/login">Login</Link> }
+                        { this.props.userData ? <Link style={{color: "white"}} to="/" onClick={this.logout} >Logout</Link> :   <Link style={{color: "white"}} to="/login">Login</Link> }
                     </NavLink>
                 </NavItem>
                 </Nav>

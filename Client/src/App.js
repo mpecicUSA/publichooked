@@ -44,6 +44,14 @@ class App extends Component {
       })
     })
   }
+  logout = () => {
+    console.log("logout clicked");
+    this.setState({
+      user: undefined, 
+      trips: undefined
+    });
+    this.history.push('/login')
+  }
   deleteState = (tripId) => {
     console.log("An trip with an id of", tripId, "was deleted")
       this.setState(prevState => ({
@@ -74,7 +82,7 @@ class App extends Component {
         <div className="App">
 
             {/* Hooked Navbar - always display  */}
-            <CompanyNavbar userData={this.state.user} />
+            <CompanyNavbar userData={this.state.user} logout={this.logout} />
             <Switch> 
             {/* Add a trip Component  */}
             <Route path="/landing" render={() => <Landing />} />
